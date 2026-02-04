@@ -33,3 +33,4 @@ Route::get('/employee-orders', function () {
 });
 Route::get('/users', [AdminController::class, 'index'])->name('users.index');
 Route::delete('/{user}/users', [AdminController::class, 'destroy'])->name('users.index');
+require __DIR__.'/auth.php';
