@@ -194,8 +194,10 @@
                         <button class="flex-1 bg-green-600 text-white py-2 rounded-lg text-sm font-medium hover:bg-green-700 transition">
                             <i class="fas fa-check mr-1"></i>Accepter
                         </button>
-                        <form action="">
-                        <button class="flex-1 bg-red-600 text-white py-2 rounded-lg text-sm font-medium hover:bg-red-700 transition">
+                        <form action="{{route('users.destroy',$user)}}" method="post">
+                            @csrf
+                           @method('DELETE')
+                                 <button class="flex-1 bg-red-600 text-white py-2 rounded-lg text-sm font-medium hover:bg-red-700 transition">
                             <i class="fas fa-times mr-1"></i>Refuser
                         </button>
                         </form>
