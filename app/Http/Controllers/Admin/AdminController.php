@@ -5,13 +5,14 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-
+use App\Models\Product;
 
 class AdminController extends Controller
 {
     public function index()
     {
-     $users = DB::table('users')->get();
+        // mohamed : i used eloquent instaed of query builder because we cant send the user object while deleting a user because(it is stdclass object type)
+     $users = user::all();
 
      return view('users', compact('users'));
     }
@@ -21,5 +22,8 @@ class AdminController extends Controller
 
     }
 
+    
 
+
+   
 }

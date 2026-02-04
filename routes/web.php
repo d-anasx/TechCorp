@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminController;
@@ -32,5 +33,14 @@ Route::get('/employee-orders', function () {
 
 });
 Route::get('/users', [AdminController::class, 'index'])->name('users.index');
-Route::delete('/{user}/users', [AdminController::class, 'destroy'])->name('users.index');
+// Mohamed : i modified this line under this command instead of users.index . i put users.destroy 
+Route::delete('/{user}/users', [AdminController::class, 'destroy'])->name('users.destroy');
 require __DIR__.'/auth.php';
+
+Route::get('/admin-dashboard', [AdminController::class,'index'])->name('admindashboard.index');
+
+Route::get('/admin-products', [ProductController::class,'products'])->name('adminproducts');
+
+Route::delete('/product-delete/{id}', [ProductController::class,'destroy'])->name('product.destroy');
+
+Route::post('/product-store', [ProductController::class,'store'])->name('product.store');
