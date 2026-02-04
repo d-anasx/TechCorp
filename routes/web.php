@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\AdminController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -23,4 +24,6 @@ Route::get('/finance', function () {
 
 Route::get('/employee-orders', function () {
     return view('employee-orders');
+
 });
+Route::get('/users', [AdminController::class, 'index'])->name('users.index');

@@ -22,7 +22,7 @@ class DatabaseSeeder extends Seeder
             DepartementSeeder::class,
             ProductSeeder::class,
             UserSeeder::class,
-            orderSeeder::class,
+            OrderSeeder::class,
         ]);
 
         User::factory()->create([
