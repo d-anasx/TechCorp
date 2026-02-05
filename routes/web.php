@@ -44,3 +44,9 @@ Route::get('/admin-products', [ProductController::class,'products'])->name('admi
 Route::delete('/product-delete/{id}', [ProductController::class,'destroy'])->name('product.destroy');
 
 Route::post('/product-store', [ProductController::class,'store'])->name('product.store');
+
+Route::get('/product-edit/{id}' , [ProductController::class,'edit'])->name('productedit');
+
+
+
+Route::put('/product/{id}', [ProductController::class,'update'])->name('productupdate');

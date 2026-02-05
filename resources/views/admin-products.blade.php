@@ -230,9 +230,15 @@
                                     </span></td>
                                 <td class="px-6 py-4">
                                     <div class="flex gap-2">
-                                        <<button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded">
+                                       <form action="{{ route('productedit', $product->id) }}", method="GET">
+                                           @csrf
+                                        
+                                        <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded">
                                                 Upadate
-                                            </button>
+                                        </button>
+                                       </form>
+
+
                                         <button class="text-green-400 hover:text-green-300"><i
                                                 class="fas fa-box"></i></button>
 
