@@ -39,7 +39,7 @@
                         </div>
                         <div> 
                             <label class="text-sm text-gray-300">Image</label>
-                            <input name="photo_path" type="file" accept="image/*" class="mt-1 w-full text-sm text-gray-300 file:bg-indigo-600 file:text-white file:py-2 file:px-3 file:rounded file:border-0" value="{{ $product->photo_path }}" />
+                            <input name="photo_path" type="file" accept="image/*" class="mt-1 w-full text-sm text-gray-300 file:bg-indigo-600 file:text-white file:py-2 file:px-3 file:rounded file:border-0"    />
                         </div>
                     </div>
 

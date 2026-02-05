@@ -11,8 +11,14 @@ class ProductController extends Controller
 
     public function products()
     {
+
         $products = Product::all();
-        return view('admin-products', compact('products'));
+        $totalProducts = $products->count();
+        $total_stock = Product::sum('quantity');
+        $standard = Product::where('isPremium', 0)->count();
+        $Premium = Product::where('isPremium', 1)->count();
+        // dd($standard);
+        return view('admin-products', compact('products', 'totalProducts', 'total_stock', 'standard', 'Premium'));
     }
     public function destroy($id)
     {
@@ -21,27 +27,33 @@ class ProductController extends Controller
         return redirect()->route('adminproducts');
     }
     public function store(Request $request)
-    { 
-        $request->isPremium = (int) $request->isPremium;
-        $request['photo_path'] = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTndc60D3vyCFZIbNLbynSmxtgRWYRlqOBMCQ&s';
-        Product::create($request->all());
+    {
+        $data = $request->all();
+        if ($request->hasFile('photo_path')) {
+
+            $path = $request->file('photo_path')->store('uploads', 'public');
+            $data['photo_path'] = $path;
+
+        }
+        $data['isPremium'] = (int) $request->isPremium;
+        Product::create($data);
         return redirect()->route('adminproducts');
     }
-
-
-
-    public function edit($id) {
-    
-        $product = Product::find($id);
-        return view('update-product', compact('product'));
-    }
-   
-    public function update(Request $request, $id)
+    public function edit($id)
     {
 
         $product = Product::find($id);
-        $product->update($request->all());
+        return view('update-product', compact('product'));
+    }
 
+    public function update(Request $request, $id)
+    {
+        $data = $request->all();
+        if ($request->hasFile('photo_path')) {
+            $data['photo_path'] = $request->file('photo_path')->store('uploads', 'public');
+        } 
+        $product = Product::find($id);
+        $product->update($data);
         return redirect()->route('adminproducts');
     }
 

@@ -47,7 +47,7 @@
                 <div class="flex items-center justify-between">
                     <div>
                         <p class="text-blue-200 text-sm font-medium">Total Produits</p>
-                        <p class="text-4xl font-bold mt-2">124</p>
+                        <p class="text-4xl font-bold mt-2">{{ $totalProducts  }}</p>
                         <p class="text-blue-200 text-sm mt-2">+12 ce mois</p>
                     </div>
                     <div class="w-14 h-14 bg-white/20 rounded-full flex items-center justify-center">
@@ -59,7 +59,7 @@
                 <div class="flex items-center justify-between">
                     <div>
                         <p class="text-green-200 text-sm font-medium">Valeur Stock</p>
-                        <p class="text-4xl font-bold mt-2">485K</p>
+                        <p class="text-4xl font-bold mt-2">{{ $total_stock }}</p>
                         <p class="text-green-200 text-sm mt-2">Tokens</p>
                     </div>
                     <div class="w-14 h-14 bg-white/20 rounded-full flex items-center justify-center">
@@ -71,7 +71,7 @@
                 <div class="flex items-center justify-between">
                     <div>
                         <p class="text-orange-200 text-sm font-medium">Ruptures</p>
-                        <p class="text-4xl font-bold mt-2">8</p>
+                        <p class="text-4xl font-bold mt-2">{{ $standard }}</p>
                         <p class="text-orange-200 text-sm mt-2">À réapprovisionner</p>
                     </div>
                     <div class="w-14 h-14 bg-white/20 rounded-full flex items-center justify-center">
@@ -83,7 +83,7 @@
                 <div class="flex items-center justify-between">
                     <div>
                         <p class="text-purple-200 text-sm font-medium">Premium</p>
-                        <p class="text-4xl font-bold mt-2">23</p>
+                        <p class="text-4xl font-bold mt-2">{{ $Premium }}</p>
                         <p class="text-purple-200 text-sm mt-2">18% du catalogue</p>
                     </div>
                     <div class="w-14 h-14 bg-white/20 rounded-full flex items-center justify-center">
@@ -189,7 +189,7 @@
                             <tr class="hover:bg-gray-700/50">
                                 <td class="px-6 py-4">
                                     <div class="flex items-center">
-                                        <img src="{{ $product->photo_path }}" alt="Produit"
+                                        <img src="{{ asset('storage/' . $product->photo_path) }}" alt="Produit"
                                             class="w-10 h-10 rounded-lg object-cover">
                                         <div class="ml-4">
                                             <div class="text-sm font-medium text-white">{{ $product->name }}</div>
