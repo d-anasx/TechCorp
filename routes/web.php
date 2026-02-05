@@ -50,3 +50,6 @@ Route::get('/product-edit/{id}' , [ProductController::class,'edit'])->name('prod
 
 
 Route::put('/product/{id}', [ProductController::class,'update'])->name('productupdate');
+
+
+Route::get('/searchProduct/{inputvalue}', [ProductController::class,'searchProduct'] );
