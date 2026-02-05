@@ -27,14 +27,25 @@ Route::get('/finance', function () {
     return view('finance-dashboard');
 });
 
+Route::get('/manager', function () {
+    return view('manager-dashboard');
+});
+
 
 Route::get('/employee-orders', function () {
     return view('employee-orders');
 
 });
-Route::get('/users', [AdminController::class, 'index'])->name('users.index');
-// Mohamed : i modified this line under this command instead of users.index . i put users.destroy 
-Route::delete('/{user}/users', [AdminController::class, 'destroy'])->name('users.destroy');
+
+Route::get('/waiting', function () {
+    return view('waiting');
+
+});
+
+Route::get('/admin/users', [AdminController::class, 'index'])->name('users.index');
+Route::put('/admin/{user}/users/refuse', [AdminController::class, 'refuse'])->name('users.refuse');
+Route::put('/admin/{user}/users/accept', [AdminController::class, 'accept'])->name('users.accept');
+
 require __DIR__.'/auth.php';
 
 Route::get('/admin-dashboard', [AdminController::class,'index'])->name('admindashboard.index');
