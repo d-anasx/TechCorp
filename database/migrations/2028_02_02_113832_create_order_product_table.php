@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('order_product', function (Blueprint $table) {
             $table->id();
-            $table->enum('status', ['validated', 'unvalidated']);
+            $table->enum('status', ['validated', 'pending', 'refused'])->default('validated');
             $table->integer('quantity');
             $table->foreignId('order_id')->constrained();
             $table->foreignId('product_id')->constrained();
