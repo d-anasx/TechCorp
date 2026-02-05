@@ -35,6 +35,10 @@ Route::get('/employee-orders', function () {
     return view('employee-orders');
 
 });
+Route::get('/waiting', function () {
+    return view('waiting');
+
+});
 
 Route::get('/admin/users', [AdminController::class, 'index'])->name('users.index');
 Route::put('/admin/{user}/users/refuse', [AdminController::class, 'refuse'])->name('users.refuse');
