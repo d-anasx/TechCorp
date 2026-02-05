@@ -59,7 +59,7 @@
                     <div>
                         <p class="text-indigo-200 text-sm font-medium">Total Utilisateurs</p>
                         <p class="text-4xl font-bold mt-2">{{$total}}</p>
-                        <p class="text-indigo-200 text-sm mt-2">+5 ce mois</p>
+                        <!-- <p class="text-indigo-200 text-sm mt-2">+5 ce mois</p> -->
                     </div>
                     <div class="w-14 h-14 bg-white/20 rounded-full flex items-center justify-center">
                         <i class="fas fa-users text-2xl"></i>
@@ -73,7 +73,7 @@
                     <div>
                         <p class="text-gray-400 text-sm font-medium">Employés</p>
                         <p class="text-3xl font-bold text-white mt-2">{{ $emoloyees}}</p>
-                        <p class="text-gray-400 text-sm mt-2">77.5% du total</p>
+                        <!-- <p class="text-gray-400 text-sm mt-2">77.5% du total</p> -->
                     </div>
                     <div class="w-14 h-14 bg-blue-500/20 rounded-full flex items-center justify-center">
                         <i class="fas fa-user text-blue-400 text-2xl"></i>
@@ -87,7 +87,7 @@
                     <div>
                         <p class="text-gray-400 text-sm font-medium">Managers</p>
                         <p class="text-3xl font-bold text-white mt-2">{{$managers}}</p>
-                        <p class="text-gray-400 text-sm mt-2">16.9% du total</p>
+                        <!-- <p class="text-gray-400 text-sm mt-2">16.9% du total</p> -->
                     </div>
                     <div class="w-14 h-14 bg-amber-500/20 rounded-full flex items-center justify-center">
                         <i class="fas fa-user-tie text-amber-400 text-2xl"></i>
@@ -101,7 +101,7 @@
                     <div>
                         <p class="text-gray-400 text-sm font-medium">Administrateurs</p>
                         <p class="text-3xl font-bold text-white mt-2">{{$admin}}</p>
-                        <p class="text-gray-400 text-sm mt-2">5.6% du total</p>
+                        <!-- <p class="text-gray-400 text-sm mt-2">5.6% du total</p> -->
                     </div>
                     <div class="w-14 h-14 bg-purple-500/20 rounded-full flex items-center justify-center">
                         <i class="fas fa-user-shield text-purple-400 text-2xl"></i>
@@ -181,7 +181,7 @@
                     <div class="grid grid-cols-2 gap-4 mb-4">
                         <div class="bg-gray-700/50 rounded-lg p-3 text-center border border-gray-600">
                             <p class="text-xs text-gray-400 mb-1">Solde</p>
-                            <p class="text-sm font-semibold text-white">3,200 T</p>
+                            <p class="text-sm font-semibold text-white">{{$user->tokens}}</p>
                         </div>
                         <div class="bg-gray-700/50 rounded-lg p-3 text-center border border-gray-600">
                             <p class="text-xs text-gray-400 mb-1">statu</p>
