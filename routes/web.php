@@ -26,11 +26,18 @@ Route::get('/finance', function () {
     return view('finance-dashboard');
 });
 
+Route::get('/manager', function () {
+    return view('manager-dashboard');
+});
+
 
 Route::get('/employee-orders', function () {
     return view('employee-orders');
 
 });
-Route::get('/users', [AdminController::class, 'index'])->name('users.index');
-Route::delete('/{user}/users', [AdminController::class, 'destroy'])->name('users.index');
+
+Route::get('/admin/users', [AdminController::class, 'index'])->name('users.index');
+Route::put('/admin/{user}/users/refuse', [AdminController::class, 'refuse'])->name('users.refuse');
+Route::put('/admin/{user}/users/accept', [AdminController::class, 'accept'])->name('users.accept');
+
 require __DIR__.'/auth.php';

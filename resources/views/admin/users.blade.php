@@ -25,7 +25,7 @@
                             <a href="#" class="text-gray-400 hover:text-white px-3 py-2 text-sm font-medium">Dashboard</a>
                             <a href="#" class="text-gray-400 hover:text-white px-3 py-2 text-sm font-medium">Produits</a>
                             <a href="#" class="text-gray-400 hover:text-white px-3 py-2 text-sm font-medium">Stocks</a>
-                            <a href="#" class="text-indigo-400 border-b-2 border-indigo-500 px-3 py-2 text-sm font-medium">Utilisateurs</a>
+                            <a href="{{route('users.index')}}" class="text-indigo-400 border-b-2 border-indigo-500 px-3 py-2 text-sm font-medium">Users</a>
                         </div>
                     </div>
                 </div>
@@ -58,7 +58,7 @@
                 <div class="flex items-center justify-between">
                     <div>
                         <p class="text-indigo-200 text-sm font-medium">Total Utilisateurs</p>
-                        <p class="text-4xl font-bold mt-2">89</p>
+                        <p class="text-4xl font-bold mt-2">{{$total}}</p>
                         <p class="text-indigo-200 text-sm mt-2">+5 ce mois</p>
                     </div>
                     <div class="w-14 h-14 bg-white/20 rounded-full flex items-center justify-center">
@@ -72,7 +72,7 @@
                 <div class="flex items-center justify-between">
                     <div>
                         <p class="text-gray-400 text-sm font-medium">Employés</p>
-                        <p class="text-3xl font-bold text-white mt-2">69</p>
+                        <p class="text-3xl font-bold text-white mt-2">{{ $emoloyees}}</p>
                         <p class="text-gray-400 text-sm mt-2">77.5% du total</p>
                     </div>
                     <div class="w-14 h-14 bg-blue-500/20 rounded-full flex items-center justify-center">
@@ -86,7 +86,7 @@
                 <div class="flex items-center justify-between">
                     <div>
                         <p class="text-gray-400 text-sm font-medium">Managers</p>
-                        <p class="text-3xl font-bold text-white mt-2">15</p>
+                        <p class="text-3xl font-bold text-white mt-2">{{$managers}}</p>
                         <p class="text-gray-400 text-sm mt-2">16.9% du total</p>
                     </div>
                     <div class="w-14 h-14 bg-amber-500/20 rounded-full flex items-center justify-center">
@@ -100,7 +100,7 @@
                 <div class="flex items-center justify-between">
                     <div>
                         <p class="text-gray-400 text-sm font-medium">Administrateurs</p>
-                        <p class="text-3xl font-bold text-white mt-2">5</p>
+                        <p class="text-3xl font-bold text-white mt-2">{{$admin}}</p>
                         <p class="text-gray-400 text-sm mt-2">5.6% du total</p>
                     </div>
                     <div class="w-14 h-14 bg-purple-500/20 rounded-full flex items-center justify-center">
@@ -111,7 +111,7 @@
         </div>
 
         <!-- Barre d'actions -->
-        <div class="bg-gray-800 rounded-xl shadow-lg p-6 mb-6 border border-gray-700">
+        <!-- <div class="bg-gray-800 rounded-xl shadow-lg p-6 mb-6 border border-gray-700">
             <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
                 <div class="flex-1">
                     <div class="relative">
@@ -145,7 +145,7 @@
                     </button>
                 </div>
             </div>
-        </div>
+        </div> -->
 
         <!-- Liste des utilisateurs en cards -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
@@ -163,7 +163,7 @@
                             <p class="text-sm text-gray-400">{{$user->email}}</p>
                         </div>
                         <span class="px-3 py-1 bg-amber-500/20 text-amber-400 text-xs font-bold rounded-full">
-                            <i class="fas fa-user-tie mr-1"></i>Manager
+                            <i class="fas fa-user-tie mr-1"></i>{{$user->role->status}}
                         </span>
                     </div>
                 </div>
@@ -171,7 +171,7 @@
                     <div class="grid grid-cols-2 gap-4 mb-4">
                         <div class="bg-gray-700/50 rounded-lg p-3 text-center border border-gray-600">
                             <p class="text-xs text-gray-400 mb-1">Département</p>
-                            <p class="text-sm font-semibold text-white">Marketing</p>
+                            <p class="text-sm font-semibold text-white">{{$user->departement->title}}</p>
                         </div>
                         <div class="bg-gray-700/50 rounded-lg p-3 text-center border border-gray-600">
                             <p class="text-xs text-gray-400 mb-1">Équipe</p>
@@ -184,20 +184,25 @@
                             <p class="text-sm font-semibold text-white">3,200 T</p>
                         </div>
                         <div class="bg-gray-700/50 rounded-lg p-3 text-center border border-gray-600">
-                            <p class="text-xs text-gray-400 mb-1">Statut</p>
-                            <p class="text-sm font-semibold text-green-400">
-                                <i class="fas fa-circle mr-1" style="font-size: 6px;"></i>Actif
+                            <p class="text-xs text-gray-400 mb-1">statu</p>
+                            <p class="text-sm font-semibold text-white">
+                                <i class="fas fa-circle mr-1" style="font-size: 6px;"></i>{{ $user->statu }}
                             </p>
                         </div>
                     </div>
                     <div class="flex gap-2 mb-2">
-                        <button class="flex-1 bg-green-600 text-white py-2 rounded-lg text-sm font-medium hover:bg-green-700 transition">
-                            <i class="fas fa-check mr-1"></i>Accepter
+                        <form action="{{ route('users.accept',$user) }}" method="post">
+                        @csrf
+                        @method('put')
+                        <button type="submit" class="flex-1 bg-green-600 text-white py-2 rounded-lg text-sm font-medium hover:bg-green-700 transition">
+                          <i class="fas fa-check mr-1"></i>Accepter
                         </button>
-                        <form action="{{route('users.destroy',$user)}}" method="post">
+                        </form>
+
+                        <form action="{{ route('users.refuse',$user) }}" method="post">
                             @csrf
-                           @method('DELETE')
-                                 <button class="flex-1 bg-red-600 text-white py-2 rounded-lg text-sm font-medium hover:bg-red-700 transition">
+                            @method('put')
+                                 <button type="submit" class="flex-1 bg-red-600 text-white py-2 rounded-lg text-sm font-medium hover:bg-red-700 transition">
                             <i class="fas fa-times mr-1"></i>Refuser
                         </button>
                         </form>
@@ -210,7 +215,7 @@
 
 
         <!-- Pagination -->
-        <div class="flex items-center justify-center gap-2">
+        <!-- <div class="flex items-center justify-center gap-2">
             <button class="px-3 py-2 bg-gray-800 border border-gray-700 rounded-lg text-gray-400 hover:bg-gray-700">
                 <i class="fas fa-chevron-left"></i>
             </button>
@@ -220,7 +225,7 @@
             <button class="px-3 py-2 bg-gray-800 border border-gray-700 rounded-lg text-gray-400 hover:bg-gray-700">
                 <i class="fas fa-chevron-right"></i>
             </button>
-        </div>
+        </div> -->
     </div>
 </body>
 </html>

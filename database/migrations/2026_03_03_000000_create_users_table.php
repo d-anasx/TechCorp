@@ -21,6 +21,7 @@ return new class extends Migration
             $table->integer('tokens')->default(0);
             $table->foreignId('departement_id')->constrained()->cascadeOnDelete();
             $table->foreignId('role_id')->constrained()->cascadeOnDelete();
+            $table->enum('statu',['waiting','accept','refuse'])->default('waiting');
             $table->timestamps();
         });
 
