@@ -16,7 +16,7 @@ return new class extends Migration
             $table->enum('status', ['validated', 'pending', 'refused'])->default('validated');
             $table->integer('quantity');
             $table->foreignId('order_id')->constrained();
-            $table->foreignId('product_id')->constrained();
+            $table->foreignId('product_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('order__products');
+        Schema::dropIfExists('order_product');
     }
 };

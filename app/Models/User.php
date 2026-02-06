@@ -23,7 +23,8 @@ class User extends Authenticatable
         'password',
         'tokens',
         'departement_id',
-        'role_id'
+        'role_id',
+        'statu'
     ];
 
         public function role()
@@ -33,7 +34,7 @@ class User extends Authenticatable
     public function departement() {
         return $this->belongsTo(Departement::class);
     }
-    
+
     /**
      * The attributes that should be hidden for serialization.
      *
