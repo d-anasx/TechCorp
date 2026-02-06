@@ -115,7 +115,7 @@
             </div>
         </div>
 
-        Barre d'actions
+        <h2 class="text-white">Barre d'actions</h2>
         <div class="bg-gray-800 rounded-xl shadow-lg p-6 mb-6 border border-gray-700">
             <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
                     <div class="flex-1">
@@ -131,30 +131,7 @@
 
 
 
-                <div class="flex gap-3">
-                    <select
-                        class="px-4 py-2 bg-gray-700 border border-gray-600 text-white rounded-lg focus:ring-2 focus:ring-indigo-500">
-                        <option>Tous les rôles</option>
-                        <option>Employé</option>
-                        <option>Manager</option>
-                        <option>Administrateur</option>
-                        <option>Finance</option>
-                    </select>
-                    <select
-                        class="px-4 py-2 bg-gray-700 border border-gray-600 text-white rounded-lg focus:ring-2 focus:ring-indigo-500">
-                        <option>Tous les départements</option>
-                        <option>Marketing</option>
-                        <option>IT</option>
-                        <option>RH</option>
-                        <option>Ventes</option>
-                        <option>Finance</option>
-                    </select>
-                    <input type="submit" id="submit" value="Search"
-                        class="px-6 py-2 bg-indigo-600 text-white rounded-lg font-medium hover:bg-indigo-700 transition flex items-center gap-2">
-                        <i></i>
-
-                        </input>
-                </div>
+             
                 </form>
             </div>
         </div>

@@ -43,5 +43,7 @@ Route::get('/waiting', function () {
 Route::get('/admin/users', [AdminController::class, 'index'])->name('users.index');
 Route::put('/admin/{user}/users/refuse', [AdminController::class, 'refuse'])->name('users.refuse');
 Route::put('/admin/{user}/users/accept', [AdminController::class, 'accept'])->name('users.accept');
+Route::get('/admin/users/search', AdminController::class ,'search');
+
 
 require __DIR__.'/auth.php';
