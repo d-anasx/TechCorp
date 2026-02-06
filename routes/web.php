@@ -8,7 +8,7 @@ use App\Http\Controllers\Employee\StoreController;
 use App\Http\Controllers\Employee\OrderController;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth/login');
 });
 
 Route::get('/dashboard', function () {
@@ -59,8 +59,6 @@ Route::get('/admin/users/search/{inputvalue}', [AdminController::class ,'search'
 
 
 require __DIR__.'/auth.php';
-
-Route::get('/admin-dashboard', [AdminController::class,'index'])->name('admindashboard.index');
 
 Route::get('/admin-products', [ProductController::class,'products'])->name('adminproducts');
 

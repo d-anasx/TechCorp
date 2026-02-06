@@ -11,58 +11,7 @@
 
 <body class="bg-gray-900">
     <!-- Navigation -->
-    <nav class="bg-gray-800 shadow-lg border-b border-gray-700">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-16">
-                <div class="flex items-center">
-                    <div class="flex-shrink-0 flex items-center">
-                        <div class="w-10 h-10 bg-indigo-600 rounded-lg flex items-center justify-center">
-                            <i class="fas fa-shopping-bag text-white"></i>
-                        </div>
-                        <span class="ml-3 text-xl font-bold text-white">TechCorp Store</span>
-                    </div>
-                    <div class="hidden md:block ml-10">
-                        <div class="flex space-x-4">
-                            <a href="#"
-                                class="text-indigo-400 border-b-2 border-indigo-500 px-3 py-2 text-sm font-medium">
-                                Boutique
-                            </a>
-                            <a href="#" class="text-gray-400 hover:text-white px-3 py-2 text-sm font-medium">
-                                Mes Commandes
-                            </a>
-                            <a href="#" class="text-gray-400 hover:text-white px-3 py-2 text-sm font-medium">
-                                Historique
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="flex items-center space-x-4">
-                    <!-- Panier -->
-                    <button class="relative p-2 text-gray-400 hover:text-white">
-                        <i class="fas fa-shopping-cart text-xl"></i>
-                        <span id="cart-count"
-                            class="absolute top-0 right-0 inline-flex items-center justify-center w-5 h-5 text-xs font-bold text-white bg-red-500 rounded-full">
-                            0
-                        </span>
-                    </button>
-                    <!-- Notifications -->
-                    <button class="relative p-2 text-gray-400 hover:text-white">
-                        <i class="fas fa-bell text-xl"></i>
-                        <span class="absolute top-0 right-0 w-2 h-2 bg-red-500 rounded-full"></span>
-                    </button>
-                    <!-- Profil -->
-                    <div class="flex items-center space-x-3">
-                        <div class="text-right hidden sm:block">
-                            <p class="text-sm font-medium text-white">{{ auth()->user()->name }}</p>
-                            <p class="text-xs text-gray-400">Employée - {{ $employee->departement->title }}</p>
-                        </div>
-                        <img src="https://ui-avatars.com/api/?name={{ urlencode(auth()->user()->name) }}&background=6366f1&color=fff"
-                            alt="Avatar" class="w-10 h-10 rounded-full">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </nav>
+    @include('partials.navbar')
 
     <!-- Contenu principal -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">

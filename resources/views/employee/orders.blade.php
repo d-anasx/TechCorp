@@ -11,19 +11,7 @@
 
 <body class="bg-gray-900 text-white min-h-screen">
 
-    <nav class="bg-gray-800 border-b border-gray-700 p-4 mb-8">
-        <div class="max-w-7xl mx-auto flex justify-between items-center">
-            <div class="flex items-center gap-2">
-                <div class="w-8 h-8 bg-indigo-600 rounded flex items-center justify-center">
-                    <i class="fas fa-shopping-cart text-xs"></i>
-                </div>
-                <span class="font-bold text-xl">TechCorp Store</span>
-            </div>
-            <a href="/store" class="text-gray-400 hover:text-white transition">
-                <i class="fas fa-arrow-left mr-2"></i>Retour à la boutique
-            </a>
-        </div>
-    </nav>
+    @include('partials.navbar')
 
     <div class="max-w-3xl mx-auto px-4 pb-12">
         <h1 class="text-3xl font-extrabold mb-8 flex justify-between items-end">

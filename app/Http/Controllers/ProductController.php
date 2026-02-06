@@ -19,7 +19,7 @@ class ProductController extends Controller
         $standard = Product::where('isPremium', 0)->count();
         $Premium = Product::where('isPremium', 1)->count();
         // dd($standard);
-        return view('admin-products', compact('products', 'totalProducts', 'total_stock', 'standard', 'Premium'));
+        return view('admin.admin-products', compact('products', 'totalProducts', 'total_stock', 'standard', 'Premium'));
     }
     public function destroy($id)
     {
