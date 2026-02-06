@@ -123,7 +123,7 @@
                             <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                                 <i class="fas fa-search text-gray-500"></i>
                             </div>
-                            <input type="text"
+                            <input type="text" id="txtSearch"
                                 class="block w-full pl-10 pr-3 py-2 bg-gray-700 border border-gray-600 text-white rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent placeholder-gray-400"
                                 placeholder="Rechercher un utilisateur...">
                         </div>
@@ -131,7 +131,7 @@
 
 
 
-             
+
                 </form>
             </div>
         </div>
@@ -208,6 +208,7 @@
 
             <!-- Pagination -->
             <!-- <div class="flex items-center justify-center gap-2">
+
             <button class="px-3 py-2 bg-gray-800 border border-gray-700 rounded-lg text-gray-400 hover:bg-gray-700">
                 <i class="fas fa-chevron-left"></i>
             </button>
@@ -219,6 +220,36 @@
             </button>
         </div> -->
         </div>
+        <script>
+//             Source - https://stackoverflow.com/a/41771264
+// Posted by Matt Altepeter, modified by community. See post 'Timeline' for change history
+// Retrieved 2026-02-06, License - CC BY-SA 3.0
+
+$(document).ready(function(){
+
+    $('#txtSearch').on('input', function(){
+
+        var text = $('#txtSearch').val();
+
+        $.ajax({
+
+            type:"GET",
+            url: 'search',
+            data: {text: $('#txtSearch').val()},
+            success: function(response) {
+                 Users = JSON.parse(Users);
+                 for (var User of Users) {
+                     console.log(Users);
+                 }
+             }
+        });
+
+
+    });
+
+});
+
+        </script>
 
 </body>
 
