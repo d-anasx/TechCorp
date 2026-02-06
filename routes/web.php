@@ -24,6 +24,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/employee/orders', [OrderController::class, 'index'])->name('employee.orders');
     Route::patch('/orders/{order}/products/{product}',[OrderController::class, 'updateQuantity']);
     Route::post('/orders/checkout', [OrderController::class, 'checkout'])->name('store.checkout');
+    Route::get('/employee/history', [OrderController::class, 'history'])->name('employee.history');
 });
 
 
