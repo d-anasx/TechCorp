@@ -224,12 +224,8 @@
                 if (response.ok) {
                     if (!data.keep_cart) {
                         localStorage.removeItem('cart');
-                    } else {
-                        cart.waiting = true;
-                        localStorage.setItem('cart', JSON.stringify(cart));
-                        alert("Votre panier est conservé en attendant la validation du manager.");
+                        window.location.href = data.redirect;
                     }
-                    window.location.href = data.redirect;
                 } else {
                     alert(data.message);
                     renderCartPage();

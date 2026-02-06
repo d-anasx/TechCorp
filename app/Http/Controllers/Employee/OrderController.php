@@ -83,7 +83,7 @@ class OrderController extends Controller
             $total += ($product->price * $item['quantity']);
 
             // Détection du premium
-            $isThisProductPremium = $product->isPremium; // Vérifiez le nom exact de votre colonne (isPremium ou is_premium)
+            $isThisProductPremium = $product->is_premium; // Vérifiez le nom exact de votre colonne (isPremium ou is_premium)
             if ($isThisProductPremium) {
                 $hasPremium = true;
             }
@@ -91,6 +91,7 @@ class OrderController extends Controller
             // Préparation des données pivot
             $items[$id] = [
                 'quantity' => $item['quantity'],
+                // Si le produit est premium -> pending, sinon -> validated
                 'status'   => $isThisProductPremium ? 'pending' : 'validated'
             ];
         }
@@ -110,19 +111,29 @@ class OrderController extends Controller
                 'status'  => $hasPremium ? 'waiting' : 'approved',
             ]);
 
+
             $order->products()->attach($items);
+
 
             $user->tokens -= $total;
             $user->save();
 
             return response()->json([
-                'message' => $hasPremium ? 'Demande envoyée au manager' : 'Commande validée',
-                'redirect' => route('store.index'),
-                'keep_cart' => $hasPremium 
+                'message' => $hasPremium ? 'Commande en attente d\'approbation (Premium)' : 'Commande validée avec succès',
+                'redirect' => route('store.index')
             ]);
         });
     }
 
+    public function history()
+    {
+        $employee = auth()->user();
+        $orders = Order::with('products')
+            ->where('user_id', auth()->id())
+            ->latest()
+            ->get();
+        return view('employee.history', compact('orders', 'employee'));
+    }
 
     /**
      * Show the form for creating a new resource.
