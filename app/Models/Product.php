@@ -12,7 +12,7 @@ class Product extends Model
         'name',
         'price',
         'quantity',
-        'isPremuim',
+        'isPremium',
         'photo_path'
     ];
 
