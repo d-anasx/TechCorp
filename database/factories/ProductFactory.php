@@ -5,10 +5,17 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Model>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Product>
  */
-class productFactory extends Factory
+class ProductFactory extends Factory
 {
+    /**
+     * The name of the factory's corresponding model.
+     *
+     * @var string
+     */
+    protected $model = \App\Models\Product::class;
+
     /**
      * Define the model's default state.
      *
@@ -16,13 +23,12 @@ class productFactory extends Factory
      */
     public function definition(): array
     {
-        // name	price	isPremium	quantity	photo_path
         return [
-            'name'=>fake()->name(),
-            'price'=>fake()->numberBetween(10,500),
-            'isPremium'=>fake()->boolean(),
-            'quantity'=>fake()->numberBetween(0,100),
-            'photo_path'=>fake()->imageUrl(),
+            'name' => fake()->word(),
+            'price' => (string) fake()->numberBetween(10, 500),
+            'isPremium' => fake()->boolean(),
+            'quantity' => fake()->numberBetween(0, 100),
+            'photo_path' => fake()->imageUrl(),
         ];
     }
 }

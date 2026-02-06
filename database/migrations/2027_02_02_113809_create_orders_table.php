@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->enum('status', ['waiting', 'approved', 'rejected']);
+            $table->enum('status', ['filling','waiting', 'approved', 'rejected'])->default('filling');
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
