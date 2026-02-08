@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ProductValidatedController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Employee\StoreController;
@@ -65,6 +66,7 @@ Route::get('/admin-products', [ProductController::class,'products'])->name('admi
 Route::delete('/product-delete/{id}', [ProductController::class,'destroy'])->name('product.destroy');
 
 Route::post('/product-store', [ProductController::class,'store'])->name('product.store');
+Route::get('/validated', [ProductValidatedController::class,'show'])->name('product.validate');
 
 Route::get('/product-edit/{id}' , [ProductController::class,'edit'])->name('productedit');
 
