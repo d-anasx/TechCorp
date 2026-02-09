@@ -54,5 +54,14 @@ class DatabaseSeeder extends Seeder
 
 
         ]);
+        User::create([
+            'name' => 'employee',
+            'email' => 'employee@example.com',
+            'role_id' => 3,
+            'departement_id' => 3,
+            'password' => Hash::make('password'),
+
+
+        ]);
     }
 }
