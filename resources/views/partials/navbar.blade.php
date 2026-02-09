@@ -1,7 +1,7 @@
 <nav class="bg-gray-800 shadow-lg border-b border-gray-700">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between items-center h-16">
-            
+
             <div class="flex items-center">
                 <div class="flex-shrink-0 flex items-center">
                     <div class="w-10 h-10 bg-indigo-600 rounded-lg flex items-center justify-center">
@@ -17,7 +17,7 @@
                         @if(auth()->user()->role->status === 'admin')
                             <a href="{{ route('adminproducts') }}" class="{{ Request::is('admin/dashboard*') ? 'text-indigo-400 border-b-2 border-indigo-500' : 'text-gray-400 hover:text-white' }} px-3 py-2 text-sm font-medium">products</a>
                             <a href="{{ route('users.index') }}" class="{{ Request::is('users*') ? 'text-indigo-400 border-b-2 border-indigo-500' : 'text-gray-400 hover:text-white' }} px-3 py-2 text-sm font-medium">Users</a>
-                        
+
                         {{-- Menu MANAGER --}}
                         @elseif(auth()->user()->role->status === 'manager')
                             <a href="{{ route('product.validate') }}" class="text-gray-400 hover:text-white px-3 py-2 text-sm font-medium">Validation</a>
@@ -36,7 +36,7 @@
             </div>
 
             <div class="flex items-center space-x-6">
-                
+
                 {{-- Panier : Uniquement pour Employee et Manager --}}
                 @if(auth()->user()->role !== 'admin')
                     <button class="relative p-2 text-gray-400 hover:text-white transition">
@@ -54,7 +54,7 @@
                             {{ auth()->user()->role->status }}
                         </p>
                     </div>
-                    <img src="https://ui-avatars.com/api/?name={{ urlencode(auth()->user()->name) }}&background=6366f1&color=fff" 
+                    <img src="https://ui-avatars.com/api/?name={{ urlencode(auth()->user()->name) }}&background=6366f1&color=fff"
                          alt="Avatar" class="w-10 h-10 rounded-full ring-2 ring-indigo-500/20">
                 </div>
 
