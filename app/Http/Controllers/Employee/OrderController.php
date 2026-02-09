@@ -92,7 +92,7 @@ class OrderController extends Controller
             $items[$id] = [
                 'quantity' => $item['quantity'],
                 // Si le produit est premium -> pending, sinon -> validated
-                'status'   => $isThisProductPremium ? 'pending' : 'validated'
+                'status'   => $isThisProductPremium && $user->role->status === 'employee' ? 'pending' : 'validated'
             ];
         }
 
@@ -108,7 +108,7 @@ class OrderController extends Controller
         return DB::transaction(function () use ($user, $total, $items, $hasPremium) {
             $order = Order::create([
                 'user_id' => $user->id,
-                'status'  => $hasPremium ? 'waiting' : 'approved',
+                'status'  => $hasPremium && $user->role->status === 'employee' ? 'waiting' : 'approved',
             ]);
 
 
@@ -119,7 +119,7 @@ class OrderController extends Controller
             $user->save();
 
             return response()->json([
-                'message' => $hasPremium ? 'Commande en attente d\'approbation (Premium)' : 'Commande validée avec succès',
+                'message' => $hasPremium && $user->role->status === 'employee'   ? 'Commande en attente d\'approbation (Premium)' : 'Commande validée avec succès',
                 'redirect' => route('store.index')
             ]);
         });

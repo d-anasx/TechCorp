@@ -54,6 +54,7 @@
     <script>
         const TOKEN_LIMIT = 2000;
         const USER_TOKENS = {{ auth()->user()->tokens }};
+        let isEmployee = {{ auth()->user()->role->status === 'employee' ? 'true' : 'false' }};
 
         function getCart() {
             return JSON.parse(localStorage.getItem('cart')) || {};
@@ -181,8 +182,8 @@
                 <i class="fas fa-spinner fa-spin"></i> En attente de validation
             </button>`;
             } else {
-                const btnClass = hasPremium ? "from-amber-500 to-orange-600" : "from-indigo-600 to-blue-700";
-                const btnText = hasPremium ? "Demander la validation" : "Confirmer la commande";
+                const btnClass = hasPremium && isEmployee ? "from-amber-500 to-orange-600" : "from-indigo-600 to-blue-700";
+                const btnText = hasPremium && isEmployee ? "Demander la validation" : "Confirmer la commande";
                 actionContainer.innerHTML = `
             <button onclick="submitOrder()" ${isDisabled ? 'disabled' : ''} 
                 class="w-full bg-gradient-to-r ${btnClass} p-4 rounded-xl font-black text-white uppercase tracking-widest transition-all shadow-lg disabled:grayscale disabled:opacity-50 disabled:cursor-not-allowed active:scale-95">

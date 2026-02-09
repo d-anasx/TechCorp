@@ -157,7 +157,7 @@
                         </div>
 
                         @if ($product->quantity > 0)
-                            @if ($product->isPremium)
+                            @if ($product->isPremium && $employee->role->status === 'employee')
                                 <button
                                     onclick="addToCart({
                                     id: {{ $product->id }},
