@@ -297,7 +297,7 @@
                 window.location.reload();
                 return;
             }
-            fetch(`http://localhost:8000/searchProduct/${searchedValue}`)
+            fetch(`http://127.0.0.1:8000/searchProduct/${searchedValue}`)
                 .then(res => {
                     if (res.ok) {
                         return res.json();
@@ -316,7 +316,7 @@
 
         }
         function displayProducts(products) {
-
+            
             const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
             let html = '';
 
