@@ -20,7 +20,7 @@
 
                         {{-- Menu MANAGER --}}
                         @elseif(auth()->user()->role->status === 'manager')
-                            <a href="{{ route('product.validate') }}" class="text-gray-400 hover:text-white px-3 py-2 text-sm font-medium">Validation</a>
+                            <a href="{{ route('manager-dashboard') }}" class="text-gray-400 hover:text-white px-3 py-2 text-sm font-medium">Validation</a>
                             <a href="{{ route('manager.store.index') }}" class="text-gray-400 hover:text-white px-3 py-2 text-sm font-medium">Boutique</a>
                             <a href="{{ route('manager.orders') }}" class="text-gray-400 hover:text-white px-3 py-2 text-sm font-medium">Mes Commandes</a>
                             <a href="{{ route('manager.history') }}" class="text-gray-400 hover:text-white px-3 py-2 text-sm font-medium">Historique</a>
