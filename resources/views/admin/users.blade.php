@@ -149,7 +149,8 @@
                                 @csrf
                                 @method('put')
                                 <button type="submit"
-                                    class="flex-1 bg-green-600 text-white py-2 rounded-lg text-sm font-medium hover:bg-green-700 transition">
+                                    {{ $user->statu === 'accept' ? 'opacity-50 disabled' : '' }}
+                                    class="flex-1 {{ $user->statu === 'accept' ? 'opacity-50 disabled' : '' }} bg-green-600 text-white py-2 rounded-lg text-sm font-medium hover:bg-green-700 transition">
                                     <i class="fas fa-check mr-1"></i>Accepter
                                 </button>
                             </form>
@@ -158,7 +159,8 @@
                                 @csrf
                                 @method('put')
                                 <button type="submit"
-                                    class="flex-1 bg-red-600 text-white py-2 rounded-lg text-sm font-medium hover:bg-red-700 transition">
+                                    {{ $user->statu === 'refuse' ? 'opacity-50 disabled' : '' }}
+                                    class="flex-1 {{ $user->statu === 'refuse' ? 'opacity-50 disabled' : '' }} bg-red-600 text-white py-2 rounded-lg text-sm font-medium hover:bg-red-700 transition">
                                     <i class="fas fa-times mr-1"></i>Refuser
                                 </button>
                             </form>

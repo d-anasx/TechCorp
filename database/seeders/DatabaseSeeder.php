@@ -31,6 +31,7 @@ class DatabaseSeeder extends Seeder
             'role_id' => 2,
             'departement_id' => 1,
             'password' => Hash::make('password'),
+            'statu' => 'accept',
 
 
 
@@ -42,6 +43,7 @@ class DatabaseSeeder extends Seeder
             'role_id' => 2,
             'departement_id' => 2,
             'password' => Hash::make('password'),
+            'statu' => 'accept',
 
         ]);
 
@@ -51,6 +53,7 @@ class DatabaseSeeder extends Seeder
             'role_id' => 1,
             'departement_id' => 3,
             'password' => Hash::make('password'),
+            'statu' => 'accept',
 
 
         ]);
