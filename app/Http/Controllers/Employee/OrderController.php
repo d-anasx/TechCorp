@@ -83,7 +83,7 @@ class OrderController extends Controller
             $total += ($product->price * $item['quantity']);
 
             // Détection du premium
-            $isThisProductPremium = $product->is_premium; // Vérifiez le nom exact de votre colonne (isPremium ou is_premium)
+            $isThisProductPremium = $product->isPremium; // Vérifiez le nom exact de votre colonne (isPremium ou is_premium)
             if ($isThisProductPremium) {
                 $hasPremium = true;
             }
