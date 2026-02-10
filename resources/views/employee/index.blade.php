@@ -112,7 +112,7 @@
                     class="bg-gray-800 rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition duration-300 border-2 {{ $product->isPremium ? 'border-amber-500' : 'border-gray-700' }}">
 
                     <div class="relative">
-                        <img src="{{ $product->photo_path }}" alt="{{ $product->name }}"
+                        <img src="{{ asset('storage/' . $product->photo_path) ?? 'public/storage/uploads/misa.jpg' }}" alt="{{ $product->name }}"
                             class="w-full h-48 object-cover {{ $product->quantity <= 0 ? 'grayscale' : '' }}">
 
                         @if ($product->quantity > 0)
