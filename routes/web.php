@@ -27,7 +27,7 @@ Route::middleware('auth')->group(function () {
     Route::patch('/orders/{order}/products/{product}', [OrderController::class, 'updateQuantity']);
     Route::post('/orders/checkout', [OrderController::class, 'checkout'])->name('store.checkout');
     Route::get('/employee/history', [OrderController::class, 'history'])->name('employee.history');
-    
+
     Route::get('/manager/store', [StoreController::class, 'index'])->name('manager.store.index');
     Route::post('/manager/store/{id}', [StoreController::class, 'store'])->name('manager.cart.add');
     Route::get('/manager/orders', [OrderController::class, 'index'])->name('manager.orders');
@@ -72,10 +72,7 @@ Route::get('/waiting', function () {
 Route::get('/admin/users', [AdminController::class, 'index'])->name('users.index');
 Route::put('/admin/{user}/users/refuse', [AdminController::class, 'refuse'])->name('users.refuse');
 Route::put('/admin/{user}/users/accept', [AdminController::class, 'accept'])->name('users.accept');
-Route::get('/admin/users/{inputvalue}', [AdminController::class,'search'] )->name('search');
-
-
-
+Route::get('/admin/users/search/{inputvalue}', [AdminController::class, 'search'])->name('users.search');
 
 
 require __DIR__ . '/auth.php';
@@ -94,3 +91,4 @@ Route::put('/product/{id}', [ProductController::class, 'update'])->name('product
 
 
 Route::get('/searchProduct/{inputvalue}', [ProductController::class, 'searchProduct']);
+
