@@ -47,11 +47,9 @@ class AdminController extends Controller
 
     }
 
-    public function search(Request $request) {
+    public function search($inputvalue) {
 
-    $text = $request->input('text');
-
-    $Users = User::all()->where('name', 'Like', $text);
+    $Users = User::where('name', 'Like','%'. $inputvalue);
 
 
     return response()->json($Users);

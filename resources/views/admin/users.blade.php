@@ -6,11 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TechCorp - Gestion des Utilisateurs</title>
     <script src="https://cdn.tailwindcss.com"></script>
-     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-   <script src="https://code.jquery.com/jquery-3.7.1.min.js"
-        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
-        crossorigin="anonymous">
-    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
     </head>
 
 <body class="bg-gray-900">
@@ -91,7 +89,7 @@
                             <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                                 <i class="fas fa-search text-gray-500"></i>
                             </div>
-                            <input type="text" id="Search" name="Search"
+                            <input type="Search" id="Search" name="Search"
                                 class="block w-full pl-10 pr-3 py-2 bg-gray-700 border border-gray-600 text-white rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent placeholder-gray-400"
                                 placeholder="Rechercher un utilisateur...">
                         </div>
@@ -194,18 +192,18 @@
          alert($text);
 
 
-        // $.ajax({
+        $.ajax({
 
-        //     type:"GET",
-        //     url: 'search',
-        //     data: {text: $('#Search').val()},
-        //     success: function(response) {
-        //          Users = JSON.parse(Users);
-        //          for (var User of Users) {
-        //              console.log(Users);
-        //          }
-        //      }
-        // });
+            type:"GET",
+            url: '{{URL::to('search' ) }}',
+            data: {'search':$text},
+            success: function(data) {
+
+                     console.log(data);
+
+
+             }
+        });
 
 
 
