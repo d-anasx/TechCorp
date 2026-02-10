@@ -50,7 +50,6 @@ Route::middleware(['auth'])
 
 
 
-
 Route::get('/employee', function () {
     return view('employee-dashboard');
 });
@@ -92,3 +91,4 @@ Route::put('/product/{id}', [ProductController::class, 'update'])->name('product
 
 
 Route::get('/searchProduct/{inputvalue}', [ProductController::class, 'searchProduct']);
+
