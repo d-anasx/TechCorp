@@ -6,8 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TechCorp - Gestion des Utilisateurs</title>
     <script src="https://cdn.tailwindcss.com"></script>
-     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-</head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    </head>
 
 <body class="bg-gray-900">
     <!-- Navigation -->
@@ -87,14 +89,11 @@
                             <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                                 <i class="fas fa-search text-gray-500"></i>
                             </div>
-                            <input type="text" id="txtSearch"
+                            <input type="Search" id="Search" name="Search"
                                 class="block w-full pl-10 pr-3 py-2 bg-gray-700 border border-gray-600 text-white rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent placeholder-gray-400"
                                 placeholder="Rechercher un utilisateur...">
                         </div>
                     </div>
-
-
-
 
                 </form>
             </div>
@@ -144,27 +143,27 @@
                                 </p>
                             </div>
                         </div>
-                        <div class="flex gap-2 mb-2">
-                            <form action="{{ route('users.accept', $user) }}" method="post">
-                                @csrf
-                                @method('put')
-                                <button type="submit"
-                                    {{ $user->statu === 'accept' ? 'opacity-50 disabled' : '' }}
-                                    class="flex-1 {{ $user->statu === 'accept' ? 'opacity-50 disabled' : '' }} bg-green-600 text-white py-2 rounded-lg text-sm font-medium hover:bg-green-700 transition">
-                                    <i class="fas fa-check mr-1"></i>Accepter
-                                </button>
-                            </form>
+        <div class="flex gap-3 mb-2">
+            <form action="{{ route('users.accept', $user) }}" method="post" class="flex-1">
+                @csrf
+                @method('put')
+                <button type="submit"
+                    class="w-full bg-gradient-to-r from-green-500 to-green-600 text-white py-2.5 px-4 rounded-lg text-sm font-semibold hover:from-green-600 hover:to-green-700 active:scale-95 transition-all duration-200 shadow-md hover:shadow-lg flex items-center justify-center gap-2">
+                    <i class="fas fa-check"></i>
+                    <span>Accepter</span>
+                </button>
+            </form>
 
-                            <form action="{{ route('users.refuse', $user) }}" method="post">
-                                @csrf
-                                @method('put')
-                                <button type="submit"
-                                    {{ $user->statu === 'refuse' ? 'opacity-50 disabled' : '' }}
-                                    class="flex-1 {{ $user->statu === 'refuse' ? 'opacity-50 disabled' : '' }} bg-red-600 text-white py-2 rounded-lg text-sm font-medium hover:bg-red-700 transition">
-                                    <i class="fas fa-times mr-1"></i>Refuser
-                                </button>
-                            </form>
-                        </div>
+            <form action="{{ route('users.refuse', $user) }}" method="post" class="flex-1">
+                @csrf
+                @method('put')
+                <button type="submit"
+                    class="w-full bg-gradient-to-r from-red-500 to-red-600 text-white py-2.5 px-4 rounded-lg text-sm font-semibold hover:from-red-600 hover:to-red-700 active:scale-95 transition-all duration-200 shadow-md hover:shadow-lg flex items-center justify-center gap-2">
+                    <i class="fas fa-times"></i>
+                    <span>Refuser</span>
+                </button>
+            </form>
+        </div>
 
                     </div>
                 </div>
@@ -186,34 +185,31 @@
             </button>
         </div> -->
         </div>
-        <script>
-//             Source - https://stackoverflow.com/a/41771264
-// Posted by Matt Altepeter, modified by community. See post 'Timeline' for change history
-// Retrieved 2026-02-06, License - CC BY-SA 3.0
+        <script type="text/javascript">
+    $('#Search').on('Keyup', function(){
 
-$(document).ready(function(){
+         $text = $(this).val();
+         alert($text);
 
-    $('#txtSearch').on('input', function(){
-
-        var text = $('#txtSearch').val();
 
         $.ajax({
 
             type:"GET",
-            url: 'search',
-            data: {text: $('#txtSearch').val()},
-            success: function(response) {
-                 Users = JSON.parse(Users);
-                 for (var User of Users) {
-                     console.log(Users);
-                 }
+            url: '{{URL::to('search' ) }}',
+            data: {'search':$text},
+            success: function(data) {
+
+                     console.log(data);
+
+
              }
         });
 
 
+
     });
 
-});
+
 
         </script>
 

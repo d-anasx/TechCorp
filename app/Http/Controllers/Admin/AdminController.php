@@ -12,6 +12,8 @@ class AdminController extends Controller
     public function index()
     {
         $users = User::all()->where('role_id', 3);
+        // ->orWhere('statu','refuse');
+
         //  the role_id = 3 is the employee
         $emoloyees = User::where('role_id', 3)->count();
         //  the role_id = 2 is the manager
@@ -47,11 +49,9 @@ class AdminController extends Controller
 
     }
 
-    public function search(Request $request) {
+    public function search($inputvalue) {
 
-    $text = $request->input('text');
-
-    $Users = User::all()->where('name', 'Like', $text);
+    $Users = User::where('name', 'Like','%'. $inputvalue);
 
 
     return response()->json($Users);
