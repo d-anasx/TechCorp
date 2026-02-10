@@ -55,6 +55,7 @@
         const TOKEN_LIMIT = 2000;
         const USER_TOKENS = {{ auth()->user()->tokens }};
         let isEmployee = {{ auth()->user()->role->status === 'employee' ? 'true' : 'false' }};
+        console.log("isEmployee:", isEmployee);
 
         function getCart() {
             return JSON.parse(localStorage.getItem('cart')) || {};
@@ -74,7 +75,6 @@
         function renderCartPage() {
             const cart = getCart();
             // Le panier est en attente si la propriété waiting est à true
-            const isWaiting = cart.waiting === true;
 
             // On filtre pour ne garder que les objets produits (on ignore la clé "waiting")
             const items = Object.values(cart).filter(i => typeof i === 'object' && i !== null);
@@ -100,16 +100,16 @@
                 if (item.isPremium) hasPremium = true;
             });
 
-            // Conditions de blocage (on ajoute isWaiting pour bloquer aussi l'ajout via les boutons +)
+            // Conditions de blocage 
             const isOverGlobalLimit = total > TOKEN_LIMIT;
             const isOverBalance = total > USER_TOKENS;
-            const isDisabled = isOverGlobalLimit || isOverBalance || isWaiting;
+            const isDisabled = isOverGlobalLimit || isOverBalance;
 
             let html = '';
             items.forEach(item => {
                 const subtotal = item.price * item.quantity;
                 html += `
-        <div class="p-6 flex items-center justify-between ${isWaiting ? 'opacity-50' : ''} transition-opacity">
+        <div class="p-6 flex items-center justify-between transition-opacity">
             <div class="flex items-center gap-4">
                 <div class="w-16 h-16 bg-gray-900 rounded-lg flex-shrink-0 border border-gray-700 overflow-hidden relative">
                      <img src="${item.photo_path ? '/storage/'+item.photo_path : 'https://ui-avatars.com/api/?name='+encodeURIComponent(item.name)+'&background=4f46e5&color=fff'}" class="w-full h-full object-cover">
@@ -125,7 +125,7 @@
 
             <div class="flex items-center gap-6">
                 <div class="flex items-center bg-gray-900 rounded-lg p-1 border border-gray-700">
-                    <button onclick="updateQuantity(${item.id}, -1)" ${isWaiting ? 'disabled' : ''} 
+                    <button onclick="updateQuantity(${item.id}, -1)"
                             class="w-8 h-8 flex items-center justify-center hover:bg-gray-800 rounded text-indigo-400 transition disabled:opacity-20 disabled:cursor-not-allowed">
                         <i class="fas fa-minus"></i>
                     </button>
@@ -145,13 +145,7 @@
             totalPriceEl.innerText = total.toLocaleString();
 
             // Gestion des alertes (On cache les alertes de limite si on est déjà en attente)
-            if (isWaiting) {
-                limitAlert.innerHTML =
-                    `<i class="fas fa-clock"></i> Commande transmise. En attente de validation par le manager.`;
-                limitAlert.className =
-                    "mb-4 p-4 bg-blue-500/10 border-blue-500/50 text-blue-400 rounded-xl flex items-center gap-3 font-bold text-sm border";
-                limitAlert.classList.remove('hidden');
-            } else if (isOverGlobalLimit) {
+            if (isOverGlobalLimit) {
                 limitAlert.innerHTML =
                     `<i class="fas fa-exclamation-triangle"></i> Limite dépassée (Max ${TOKEN_LIMIT} Tokens)`;
                 limitAlert.className =
@@ -176,12 +170,7 @@
                 `<span class="bg-green-500/10 text-green-500 border border-green-500/30 px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-wider">Achat Direct</span>`;
             badgeContainer.innerHTML = badgeHtml;
 
-            if (isWaiting) {
-                actionContainer.innerHTML = `
-            <button disabled class="w-full bg-gray-700 p-4 rounded-xl font-black text-gray-500 uppercase tracking-widest cursor-not-allowed flex items-center justify-center gap-3">
-                <i class="fas fa-spinner fa-spin"></i> En attente de validation
-            </button>`;
-            } else {
+            
                 const btnClass = hasPremium && isEmployee ? "from-amber-500 to-orange-600" : "from-indigo-600 to-blue-700";
                 const btnText = hasPremium && isEmployee ? "Demander la validation" : "Confirmer la commande";
                 actionContainer.innerHTML = `
@@ -189,7 +178,7 @@
                 class="w-full bg-gradient-to-r ${btnClass} p-4 rounded-xl font-black text-white uppercase tracking-widest transition-all shadow-lg disabled:grayscale disabled:opacity-50 disabled:cursor-not-allowed active:scale-95">
                 ${btnText}
             </button>`;
-            }
+            
         }
 
         async function submitOrder() {
