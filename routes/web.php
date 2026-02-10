@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Employee\StoreController;
 use App\Http\Controllers\Employee\OrderController;
 
+
 Route::get('/', function () {
     return view('auth/login');
 });
@@ -23,7 +24,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/employee/store', [StoreController::class, 'index'])->name('store.index');
     Route::post('/employee/store/{id}', [StoreController::class, 'store'])->name('cart.add');
     Route::get('/employee/orders', [OrderController::class, 'index'])->name('employee.orders');
-    Route::patch('/orders/{order}/products/{product}',[OrderController::class, 'updateQuantity']);
+    Route::patch('/orders/{order}/products/{product}', [OrderController::class, 'updateQuantity']);
     Route::post('/orders/checkout', [OrderController::class, 'checkout'])->name('store.checkout');
     Route::get('/employee/history', [OrderController::class, 'history'])->name('employee.history');
 
@@ -32,6 +33,21 @@ Route::middleware('auth')->group(function () {
     Route::get('/manager/orders', [OrderController::class, 'index'])->name('manager.orders');
     Route::get('/manager/history', [OrderController::class, 'history'])->name('manager.history');
 });
+
+
+Route::middleware(['auth'])
+    ->prefix('manager')
+    ->group(function () {
+        Route::get('/orders/waiting', [ProductValidatedController::class, 'waiting'])
+            ->name('manager.orders.waiting');
+
+        Route::post('/orders/{id}', [ProductValidatedController::class, 'approve'])
+            ->name('manager.orders.approve');
+
+        Route::post('/orders/{id}/reject', [ProductValidatedController::class, 'reject'])
+            ->name('manager.orders.reject');
+    });
+
 
 
 
@@ -43,41 +59,36 @@ Route::get('/finance', function () {
     return view('finance-dashboard');
 });
 
-Route::get('/manager', function () {
-    return view('manager-dashboard');
-});
+Route::get('/manager', [ProductValidatedController::class, 'waiting']) ->name('manager-dashboard');;
 
 
 Route::get('/employee-orders', function () {
     return view('employee-orders');
-
 });
 
 Route::get('/waiting', function () {
     return view('waiting');
-
 });
 
 Route::get('/admin/users', [AdminController::class, 'index'])->name('users.index');
 Route::put('/admin/{user}/users/refuse', [AdminController::class, 'refuse'])->name('users.refuse');
 Route::put('/admin/{user}/users/accept', [AdminController::class, 'accept'])->name('users.accept');
-Route::get('/admin/users/search/{inputvalue}', [AdminController::class ,'search'])->name('users.search');
+Route::get('/admin/users/search/{inputvalue}', [AdminController::class, 'search'])->name('users.search');
 
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
 
-Route::get('/admin-products', [ProductController::class,'products'])->name('adminproducts');
+Route::get('/admin-products', [ProductController::class, 'products'])->name('adminproducts');
 
-Route::delete('/product-delete/{id}', [ProductController::class,'destroy'])->name('product.destroy');
+Route::delete('/product-delete/{id}', [ProductController::class, 'destroy'])->name('product.destroy');
 
-Route::post('/product-store', [ProductController::class,'store'])->name('product.store');
-Route::get('/validated', [ProductValidatedController::class,'show'])->name('product.validate');
+Route::post('/product-store', [ProductController::class, 'store'])->name('product.store');
 
-Route::get('/product-edit/{id}' , [ProductController::class,'edit'])->name('productedit');
-
+Route::get('/product-edit/{id}', [ProductController::class, 'edit'])->name('productedit');
 
 
-Route::put('/product/{id}', [ProductController::class,'update'])->name('productupdate');
+
+Route::put('/product/{id}', [ProductController::class, 'update'])->name('productupdate');
 
 
-Route::get('/searchProduct/{inputvalue}', [ProductController::class,'searchProduct'] );
+Route::get('/searchProduct/{inputvalue}', [ProductController::class, 'searchProduct']);
