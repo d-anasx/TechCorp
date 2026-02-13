@@ -7,6 +7,7 @@
     <title>TechCorp - Récapitulatif Commande</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src='{{ asset('script.js') }}'></script>
 </head>
 
 <body class="bg-gray-900 text-white min-h-screen">
@@ -57,9 +58,7 @@
         let isEmployee = {{ auth()->user()->role->status === 'employee' ? 'true' : 'false' }};
         console.log("isEmployee:", isEmployee);
 
-        function getCart() {
-            return JSON.parse(localStorage.getItem('cart')) || {};
-        }
+        
 
         function updateQuantity(id, delta) {
             const cart = getCart();

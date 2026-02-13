@@ -7,6 +7,7 @@
     <title>TechCorp - Dashboard</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script  src='script.js'></script>
 </head>
 
 {{-- We add flex-col and min-h-screen to the body to help centering --}}
@@ -122,7 +123,6 @@
             </div>
         </main>
     @endif
-
 </body>
 
 </html>

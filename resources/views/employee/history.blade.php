@@ -15,6 +15,7 @@
         
         body { background-color: #111827; } /* gray-900 */
     </style>
+    <script src='{{ asset('script.js') }}'></script>
 </head>
 <body class="text-white min-h-screen">
 
@@ -138,20 +139,10 @@
             </div>
         @endif
     </div>
-
     <script>
-        /**
-         * Gère l'affichage des détails d'une commande
-         * @param {number} id - L'ID de la commande
-         */
         function toggleOrder(id) {
             const detailSection = document.getElementById(`details-${id}`);
             const arrowIcon = document.getElementById(`icon-${id}`);
-            
-            // Ferme les autres détails ouverts pour un effet propre (optionnel)
-            // document.querySelectorAll('[id^="details-"]').forEach(el => {
-            //     if(el.id !== `details-${id}`) el.classList.add('hidden');
-            // });
 
             if (detailSection.classList.contains('hidden')) {
                 detailSection.classList.remove('hidden');

@@ -14,22 +14,22 @@
                 @if(auth()->user()->statu === 'accept')
                 <div class="hidden md:block ml-10">
                     <div class="flex space-x-4">
-                        <a href="{{ route('dashboard') }}" class="{{ Request::is('dashboard') ? 'text-indigo-400 border-b-2 border-indigo-500' : 'text-gray-400 hover:text-white' }} px-3 py-2 text-sm font-medium">Dashboard</a>
+                        <a href="{{ route('dashboard') }}" class="text-gray-400 hover:text-white px-3 py-2 text-sm font-medium">Dashboard</a>
                         
                         @if(auth()->user()->role->status === 'admin')
-                            <a href="{{ route('adminproducts') }}" class="{{ Request::is('admin/products*') ? 'text-indigo-400 border-b-2 border-indigo-500' : 'text-gray-400 hover:text-white' }} px-3 py-2 text-sm font-medium">Products</a>
-                            <a href="{{ route('users.index') }}" class="{{ Request::is('users*') ? 'text-indigo-400 border-b-2 border-indigo-500' : 'text-gray-400 hover:text-white' }} px-3 py-2 text-sm font-medium">Users</a>
+                            <a href="{{ route('adminproducts') }}" class="text-gray-400 hover:text-white px-3 py-2 text-sm font-medium">Products</a>
+                            <a href="{{ route('users.index') }}" class="text-gray-400 hover:text-white px-3 py-2 text-sm font-medium">Users</a>
 
                         {{-- Menu MANAGER --}}
                         @elseif(auth()->user()->role->status === 'manager')
                             <a href="{{ route('manager-dashboard') }}" class="text-gray-400 hover:text-white px-3 py-2 text-sm font-medium">Validation</a>
                             <a href="{{ route('manager.store.index') }}" class="text-gray-400 hover:text-white px-3 py-2 text-sm font-medium">Boutique</a>
                             <a href="{{ route('manager.orders') }}" class="text-gray-400 hover:text-white px-3 py-2 text-sm font-medium">Mes Commandes</a>
-                            <a href="{{ route('employee.history') }}" class="{{ Request::is('history*') ? 'text-indigo-400 border-b-2 border-indigo-500' : 'text-gray-400 hover:text-white' }} px-3 py-2 text-sm font-medium">Historique</a>
+                            <a href="{{ route('employee.history') }}" class="text-gray-400 hover:text-whitepx-3 py-2 text-sm font-medium">Historique</a>
                         @else {{-- Employee --}}
-                            <a href="{{ route('store.index') }}" class="{{ Request::is('store*') ? 'text-indigo-400 border-b-2 border-indigo-500' : 'text-gray-400 hover:text-white' }} px-3 py-2 text-sm font-medium">Boutique</a>
+                            <a href="{{ route('store.index') }}" class="text-gray-400 hover:text-white px-3 py-2 text-sm font-medium">Boutique</a>
                             <a href="{{ route('employee.orders') }}" class="text-gray-400 hover:text-white px-3 py-2 text-sm font-medium">Mes Commandes</a>
-                            <a href="{{ route('employee.history') }}" class="{{ Request::is('history*') ? 'text-indigo-400 border-b-2 border-indigo-500' : 'text-gray-400 hover:text-white' }} px-3 py-2 text-sm font-medium">Historique</a>
+                            <a href="{{ route('employee.history') }}" class="text-gray-400 hover:text-white px-3 py-2 text-sm font-medium">Historique</a>
                         @endif
                     </div>
                 </div>
@@ -40,10 +40,10 @@
 
                 {{-- Panier : Uniquement pour Employee et Manager --}}
                 @if(auth()->user()->role !== 'admin')
-                    <button class="relative p-2 text-gray-400 hover:text-white transition">
+                    <a href="{{ auth()->user()->role == 'manager' ? route('manager.orders') : route('employee.orders') }}" class="relative p-2 text-gray-400 hover:text-white transition">
                         <i class="fas fa-shopping-cart text-xl"></i>
                         <span id="cart-count" class="absolute top-0 right-0 inline-flex items-center justify-center w-5 h-5 text-xs font-bold text-white bg-red-500 rounded-full border-2 border-gray-800">0</span>
-                    </button>
+                    </a>
                 @endif
 
                 <div class="flex items-center space-x-3 border-l border-gray-700 pl-6">
