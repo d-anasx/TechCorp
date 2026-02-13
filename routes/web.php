@@ -49,46 +49,20 @@ Route::middleware(['auth'])
     });
 
 
+Route::middleware(['auth', 'admin'])->group(function () {
 
-Route::get('/employee', function () {
-    return view('employee-dashboard');
+    Route::get('/admin/users', [AdminController::class, 'index'])->name('users.index');
+    Route::put('/admin/{user}/users/refuse', [AdminController::class, 'refuse'])->name('users.refuse');
+    Route::put('/admin/{user}/users/accept', [AdminController::class, 'accept'])->name('users.accept');
+    Route::get('/admin/users/search/{inputvalue}', [AdminController::class, 'search'])->name('users.search');
+    Route::get('/admin-products', [ProductController::class, 'products'])->name('adminproducts');
+    Route::delete('/product-delete/{id}', [ProductController::class, 'destroy'])->name('product.destroy');
+    Route::post('/product-store', [ProductController::class, 'store'])->name('product.store');
+    Route::get('/product-edit/{id}', [ProductController::class, 'edit'])->name('productedit');
+    Route::put('/product/{id}', [ProductController::class, 'update'])->name('productupdate');
 });
 
-Route::get('/finance', function () {
-    return view('finance-dashboard');
-});
 
-Route::get('/manager', [ProductValidatedController::class, 'waiting']) ->name('manager-dashboard');;
-
-
-Route::get('/employee-orders', function () {
-    return view('employee-orders');
-});
-
-Route::get('/waiting', function () {
-    return view('waiting');
-});
-
-Route::get('/admin/users', [AdminController::class, 'index'])->name('users.index');
-Route::put('/admin/{user}/users/refuse', [AdminController::class, 'refuse'])->name('users.refuse');
-Route::put('/admin/{user}/users/accept', [AdminController::class, 'accept'])->name('users.accept');
-Route::get('/admin/users/search/{inputvalue}', [AdminController::class, 'search'])->name('users.search');
 
 
 require __DIR__ . '/auth.php';
-
-Route::get('/admin-products', [ProductController::class, 'products'])->name('adminproducts');
-
-Route::delete('/product-delete/{id}', [ProductController::class, 'destroy'])->name('product.destroy');
-
-Route::post('/product-store', [ProductController::class, 'store'])->name('product.store');
-
-Route::get('/product-edit/{id}', [ProductController::class, 'edit'])->name('productedit');
-
-
-
-Route::put('/product/{id}', [ProductController::class, 'update'])->name('productupdate');
-
-
-Route::get('/searchProduct/{inputvalue}', [ProductController::class, 'searchProduct']);
-
